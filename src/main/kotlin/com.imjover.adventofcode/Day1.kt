@@ -4,18 +4,34 @@ class Day1 {
         /**
          * Counts how many items in the array are larger from the item before it.
          */
-        private fun sonarSweep(vararg depths: Int): Int {
+        private fun sonarSweep(windowSize: Int, vararg depths: Int): Int {
             var largerCount = 0
-            for (i in 1 until depths.size) {
-                if (depths[i] > depths[i - 1]) {
+            for (i in windowSize until depths.size) {
+                var sumA = depths[i - 1]
+                var sumB = depths[i]
+                for (j in i - windowSize until i) {
+                    // 1st set
+                    if (i - j > 1) {
+                        sumA += depths[j]
+                    }
+                    // 2nd set
+                    if (i - j < windowSize) {
+                        sumB += depths[j]
+                    }
+                }
+                if (sumB > sumA) {
                     largerCount++
                 }
             }
             return largerCount
         }
 
-        fun solve(): String {
-            return "The total count of larger items is: ${sonarSweep(*INPUT)}"
+        fun solve1(): Int {
+            return sonarSweep(1, *INPUT)
+        }
+
+        fun solve2(): Int {
+            return sonarSweep(3, *INPUT)
         }
 
         private val INPUT = intArrayOf(150,

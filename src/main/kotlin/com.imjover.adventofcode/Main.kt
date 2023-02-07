@@ -5,7 +5,10 @@ fun main(args: Array<String>) {
 
     when (day) {
         1 -> {
-            println(Day1.solve())
+            println("The total count of larger items divisible by 1: ${Day1.solve1()}")
+        }
+        2 -> {
+            println("The total count of larger items divisible by 3: ${Day1.solve2()}")
         }
         else -> throw RuntimeException("Invalid day")
     }
