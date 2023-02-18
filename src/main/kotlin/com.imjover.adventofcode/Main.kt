@@ -13,6 +13,10 @@ fun main(args: Array<String>) {
         2 -> {
             val position = Day2.solve()
             println("The new position is: horizontal = ${position.first}, depth = ${position.second}")
+            val position2 = Day2.solve2()
+            println("The new position is: horizontal = ${position2.horizontalPosition}, " +
+                    "depth = ${position2.depth}, " +
+                    "aim = ${position2.aim}")
         }
         else -> throw RuntimeException("Invalid day")
     }

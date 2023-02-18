@@ -1,6 +1,7 @@
 package com.imjover.adventofcode
 
 class Day2 {
+
     companion object {
 
         fun solve(): Pair<Int, Int> {
@@ -14,6 +15,21 @@ class Day2 {
                 }
             }
             return Pair(horizontal, depth)
+        }
+
+        fun solve2(): SubmarinePosition {
+            val submarinePosition = SubmarinePosition()
+            for ((key, value) in INPUT) {
+                when (key) {
+                    Action.down -> submarinePosition.aim += value
+                    Action.up -> submarinePosition.aim -= value
+                    Action.forward -> {
+                        submarinePosition.horizontalPosition += value
+                        submarinePosition.depth += submarinePosition.aim * value
+                    }
+                }
+            }
+            return submarinePosition
         }
 
         private val INPUT = listOf(
